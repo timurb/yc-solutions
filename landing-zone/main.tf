@@ -31,5 +31,9 @@ resource "yandex_storage_bucket" "terraform" {
 
   bucket = "${var.folder_name}-terraform"
 
+  depends_on = [
+    yandex_iam_service_account_static_access_key.sa-static-key,
+    yandex_iam_service_account.terraform-state
+  ]
   provider = yandex.folder
 }
