@@ -1,6 +1,15 @@
+data "terraform_remote_state" "landing-zone" {
+  backend = "local"
+
+  config = {
+    path = "../landing-zone/terraform.tfstate"
+  }
+}
+
 provider "yandex" {
-  cloud_id = var.cloud_id
-  folder_id = var.folder_id
+  cloud_id = data.terraform_remote_state.landing-zone.outputs.cloud_id
+  folder_id = data.terraform_remote_state.landing-zone.outputs.folder_id
+  zone = "ru-central1-c"
 }
 
 

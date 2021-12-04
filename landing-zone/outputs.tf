@@ -1,3 +1,11 @@
+output "cloud_id" {
+  value = var.cloud_id    # for remote state
+}
+
+output "environment" {
+  value = var.folder_name # for remote state
+}
+
 output "folder_id" {
   value = yandex_resourcemanager_folder.default.id
 }
