@@ -4,7 +4,7 @@ variable "cloud_id" {
 
 variable "folder_name" {
   type = string
-  default = "dev"
+  default = "zurdeploy-dev"
 }
 
 variable "description" {
