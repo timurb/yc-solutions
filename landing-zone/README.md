@@ -6,3 +6,7 @@ Cloud Folders and IAM creds for running solutions and appliances.
 - IAM admin creds inside folder
 - Cross-folder federation (?)
 - Terraform state S3 buckets
+
+## TODOs
+ - [] Usage guide
+ - [] Deployment guide
