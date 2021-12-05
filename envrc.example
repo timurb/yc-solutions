@@ -9,7 +9,6 @@ export YC_TOKEN='AQAAAxxxxxxxxxxxxxxxx'
 # Fill out your cloud ID, environment ID and remote state bucket
 export TF_VAR_cloud_id="b1xxxxxxxxxxxxxxxx"
 export TF_VAR_environment="zurdeploy-dev"
-export TF_VAR_remote_state_bucket="zurdeploy-dev-terraform"
 
 # Get the vars from landing-zone terraform output
 #    terraform output -json | jq .folder_id.value
