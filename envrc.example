@@ -1,0 +1,22 @@
+# Usage:
+#   - install direnv.net
+#   - rename this file to .envrc
+#   - fill out the parameters according to comments below
+
+# obtain token from "yc init"
+export YC_TOKEN='AQAAAxxxxxxxxxxxxxxxx'
+
+# Fill out your cloud ID, environment ID and remote state bucket
+export TF_VAR_cloud_id="b1xxxxxxxxxxxxxxxx"
+export TF_VAR_environment="zurdeploy-dev"
+export TF_VAR_remote_state_bucket="zurdeploy-dev-terraform"
+
+# Get the vars from landing-zone terraform output
+#    terraform output -json | jq .folder_id.value
+#    terraform output -json | jq .terraform_access_key.value
+#    terraform output -json | jq .terraform_secret_key.value
+export AWS_ACCESS_KEY_ID="xxxxxxxxxxxxxxxxxx"
+export AWS_SECRET_KEY="xxxxxxxxxxxxxxxxxx"
+export TF_VAR_folder_id="b1xxxxxxxxxxxxxxxxx"
+
+
