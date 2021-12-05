@@ -23,6 +23,7 @@ resource "yandex_compute_instance" "docker-instance" {
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu.id
+      size = var.root_disk_size
     }
   }
 
@@ -33,4 +34,9 @@ resource "yandex_compute_instance" "docker-instance" {
   lifecycle {
     ignore_changes = [boot_disk]
   }
+}
+
+locals {
+  ansible_gateway_string = "ansible_ssh_common_args: '-o ProxyCommand=\"ssh -W %h:%p -q ubuntu@${data.terraform_remote_state.networking.outputs.bastion_ip}\"'"
+  ansible_inventory_string = "application  ansible_ssh_host=${yandex_compute_instance.docker-instance.network_interface[0].ip_address} ansible_ssh_user=ubuntu"
 }

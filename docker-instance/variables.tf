@@ -23,6 +23,11 @@ variable "memory" {
   default = 8
 }
 
+variable "root_disk_size" {
+  type = number
+  default = 30
+}
+
 variable "zone" {
   type = number
   default = 1
