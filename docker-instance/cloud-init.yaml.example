@@ -1,0 +1,8 @@
+#cloud-config
+
+users:
+  - name: ubuntu
+    shell: /bin/bash
+    sudo: "ALL=(ALL) NOPASSWD:ALL"
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDbB8T9i0A3qPHlG6h7/Z0CSJpkXezMMzXeaoJQgYm0j3Gzu1757I1V2+O0OUwdioHSnr/KjGXunlp15t2udEwIUJN7QVb5BVR/6grzpK2wB7qUHAs2VXkg0z+4PzEsC8x70xuldXwf6M6CS4FmhNIkinxFGmnQskzemZk9IlMHZmlZNRWHsI3OKGgLw7XMZd/zUJfCVsZ+2GVySdG+zqgk+l455HwTPQ8O2qi1qvPgCBJMbE3jNR9OtY5fHsKKaFrbKA4hhFt9m2rlzJ5+XozkcbDjfc1L2s0vFed7/deY0fHh/c3tgdqskIPBavkPO4weu/92xdZmVurEUy8FcPDbbv/nhl/GxOPnKAFlSpAHz6dVwMmtQE4oB5ejtgEs65Y7F0J8GEvLCzNjl2xyJiIDo2vFWYoiGU8WlufYPfn0rg6JN8Ai+9xt9i1PJRvnPdQxF9Uhf/E0NIDRXhtJo9jtk6+0L81L7d31TFE2Y6JnGQRQrbEvSsDzejuXDFZtFH0NwqS5+uHZ0GLYPMDnxqiK3eVuT7NivK7qYaQJmyI31iplV5fqqPq9wOqMnppqXdjyHsDGPFSFEoeGNFvnWq6Qa9RZ202jqCTdJ0jkvkIYAL4Y0FTXml9Mnz559LRXt+Y7Ki2b39qNV5s5GvyTednu77mzYvJ/NgZfiRkydXsFrw== Timur_Batyrshin_2017
