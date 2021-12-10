@@ -10,6 +10,10 @@ output "subnets_public" {
   value = yandex_vpc_subnet.public.*.id
 }
 
+output "zones" {
+  value = var.zones
+}
+
 output "bastion_ip" {
   value = local.basion_ip
 }
@@ -26,6 +30,6 @@ output "application_fqdn" {
   value = local.application_dns
 }
 
-output "zones" {
-  value = var.zones
+output "dns_zone" {
+  value = local.dns_zone_fqdn
 }
