@@ -20,3 +20,8 @@ variable "zones" {
     "ru-central1-c"
   ]
 }
+
+variable "base_dns" {
+  type = string
+  default = "yc.timurb.ru"
+}

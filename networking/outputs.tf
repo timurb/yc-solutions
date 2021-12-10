@@ -1,3 +1,7 @@
+output "network" {
+  value = yandex_vpc_network.default.id
+}
+
 output "subnets_private" {
   value = yandex_vpc_subnet.private.*.id
 }
@@ -7,7 +11,19 @@ output "subnets_public" {
 }
 
 output "bastion_ip" {
-  value = yandex_compute_instance.bastion.network_interface[0].nat_ip_address
+  value = local.basion_ip
+}
+
+output "bastion_fqdn" {
+  value = local.bastion_dns
+}
+
+output "application_ip" {
+  value = local.application_ip
+}
+
+output "application_fqdn" {
+  value = local.application_dns
 }
 
 output "zones" {
