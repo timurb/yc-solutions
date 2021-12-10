@@ -27,6 +27,8 @@ resource "yandex_compute_instance" "docker-instance" {
     }
   }
 
+  service_account_id = data.terraform_remote_state.docker-registry.outputs.sa_pull
+
   metadata = {
     user-data = file("${path.module}/cloud-init.yaml")
   }
