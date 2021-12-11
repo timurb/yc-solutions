@@ -40,6 +40,7 @@ resource "yandex_compute_instance" "docker-instance" {
   }
 
   lifecycle {
+    prevent_destroy = true
     ignore_changes = [boot_disk]
   }
 }

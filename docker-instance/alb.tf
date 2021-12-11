@@ -77,6 +77,10 @@ resource "yandex_alb_load_balancer" "default" {
     }
   }
 
+  ###FIXME as of now Yandex doesn't support creation of SSL certs using Terraform
+  ###      hence preventing complete configuration of the listeners from Terraform
+  ###
+  ###      Create SSL cert and replace listeners manually if you are going for HTTPS
   listener {
     name = "http"
 
@@ -113,6 +117,10 @@ resource "yandex_alb_load_balancer" "default" {
         http_router_id = yandex_alb_http_router.dashboards.id
       }
     }
+  }
+
+  lifecycle { ###FIXME remove once SSL support is implemented (see above FIXME comment)
+    ignore_changes = [listener]
   }
 }
 
