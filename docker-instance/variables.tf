@@ -1,11 +1,11 @@
 variable "app_name" {
   type = string
-  default = "application"
+  default = "webapp"
 }
 
 variable "app_hostname" {
   type = string
-  default = "application"
+  default = "webapp"
 }
 
 variable "platform_id" {

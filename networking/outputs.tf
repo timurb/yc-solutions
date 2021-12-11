@@ -22,12 +22,12 @@ output "bastion_fqdn" {
   value = local.bastion_dns
 }
 
-output "application_ip" {
-  value = local.application_ip
+output "webapp_ip" {
+  value = local.webapp_ip
 }
 
-output "application_fqdn" {
-  value = local.application_dns
+output "webapp_fqdn" {
+  value = local.webapp_dns
 }
 
 output "dns_zone" {

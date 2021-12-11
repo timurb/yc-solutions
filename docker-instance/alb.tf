@@ -6,7 +6,7 @@ resource "yandex_alb_target_group" "default" {
   }
 }
 
-resource "yandex_alb_backend_group" "application" {
+resource "yandex_alb_backend_group" "webapp" {
   name = var.app_name
 
   http_backend {
@@ -28,7 +28,7 @@ resource "yandex_alb_backend_group" "dashboards" {
   }
 }
 
-resource "yandex_alb_http_router" "application" {
+resource "yandex_alb_http_router" "webapp" {
   name = var.app_name
 }
 
@@ -36,16 +36,16 @@ resource "yandex_alb_http_router" "dashboards" {
   name = "${var.app_name}-dashboards"
 }
 
-resource "yandex_alb_virtual_host" "application" {
+resource "yandex_alb_virtual_host" "webapp" {
   name = var.app_name
 
-  http_router_id = yandex_alb_http_router.application.id
+  http_router_id = yandex_alb_http_router.webapp.id
 
   route {
     name = var.app_name
     http_route {
       http_route_action {
-        backend_group_id = yandex_alb_backend_group.application.id
+        backend_group_id = yandex_alb_backend_group.webapp.id
       }
     }
   }
@@ -87,7 +87,7 @@ resource "yandex_alb_load_balancer" "default" {
     endpoint {
       address {
         external_ipv4_address {
-          address = data.terraform_remote_state.networking.outputs.application_ip
+          address = data.terraform_remote_state.networking.outputs.webapp_ip
         }
       }
       ports = [ 80 ]
@@ -95,7 +95,7 @@ resource "yandex_alb_load_balancer" "default" {
 
     http {
       handler {
-        http_router_id = yandex_alb_http_router.application.id
+        http_router_id = yandex_alb_http_router.webapp.id
       }
     }
   }
@@ -106,7 +106,7 @@ resource "yandex_alb_load_balancer" "default" {
     endpoint {
       address {
         external_ipv4_address {
-          address = data.terraform_remote_state.networking.outputs.application_ip
+          address = data.terraform_remote_state.networking.outputs.webapp_ip
         }
       }
       ports = [ 8090 ]

@@ -3,8 +3,8 @@ locals {
   dns_zone_fqdn = "${local.dns_zone_name}.${var.base_dns}"
   basion_ip = yandex_compute_instance.bastion.network_interface[0].nat_ip_address
   bastion_dns = "bastion.${local.dns_zone_fqdn}"
-  application_ip = yandex_vpc_address.application.external_ipv4_address[0].address
-  application_dns = "application.${local.dns_zone_fqdn}"
+  webapp_ip = yandex_vpc_address.webapp.external_ipv4_address[0].address
+  webapp_dns = "webapp.${local.dns_zone_fqdn}"
 }
 
 
@@ -41,8 +41,8 @@ resource "yandex_vpc_address" "bastion" {
   }
 }
 
-resource "yandex_vpc_address" "application" {
-  name = "application"
+resource "yandex_vpc_address" "webapp" {
+  name = "webapp"
 
   external_ipv4_address {
     zone_id = var.zones[0]
@@ -76,10 +76,10 @@ resource "yandex_dns_recordset" "bastion" {
   data = [local.basion_ip]
 }
 
-resource "yandex_dns_recordset" "application" {
+resource "yandex_dns_recordset" "webapp" {
   zone_id = yandex_dns_zone.public.id
-  name = "application"
+  name = "webapp"
   type = "A"
   ttl = 300
-  data = [local.application_ip]
+  data = [local.webapp_ip]
 }

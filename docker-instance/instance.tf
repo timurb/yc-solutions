@@ -4,7 +4,7 @@ data "yandex_compute_image" "ubuntu" {
 
 locals {
   ansible_gateway_string = "ansible_ssh_common_args: '-o ProxyCommand=\"ssh -W %h:%p -q ubuntu@${data.terraform_remote_state.networking.outputs.bastion_ip}\"'"
-  ansible_inventory_string = "application  ansible_ssh_host=${yandex_compute_instance.docker-instance.network_interface[0].ip_address} ansible_ssh_user=ubuntu"
+  ansible_inventory_string = "webapp  ansible_ssh_host=${yandex_compute_instance.docker-instance.network_interface[0].ip_address} ansible_ssh_user=ubuntu"
   instance_subnet = data.terraform_remote_state.networking.outputs.subnets_private[var.zone]
   instance_zone = data.terraform_remote_state.networking.outputs.zones[var.zone]
 }
