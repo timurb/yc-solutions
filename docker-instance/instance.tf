@@ -14,7 +14,7 @@ resource "yandex_compute_instance" "docker-instance" {
   hostname = var.app_hostname
 
   platform_id = var.platform_id
-  allow_stopping_for_update = false
+  allow_stopping_for_update = true
 
   resources {
     cores = var.cpu_cores
@@ -33,6 +33,14 @@ resource "yandex_compute_instance" "docker-instance" {
     }
   }
 
+  dynamic "secondary_disk" {
+    for_each = yandex_compute_disk.default
+    content {
+      disk_id = secondary_disk.value.id
+      device_name = secondary_disk.value.labels.device_name
+    }
+  }
+
   service_account_id = data.terraform_remote_state.docker-registry.outputs.sa_pull
 
   metadata = {
@@ -42,5 +50,17 @@ resource "yandex_compute_instance" "docker-instance" {
   lifecycle {
     prevent_destroy = true
     ignore_changes = [boot_disk]
+  }
+}
+
+resource "yandex_compute_disk" "default" {
+  for_each = var.additional_disks
+
+  name = "${var.app_name}-${each.key}"
+  size = each.value["size"]
+  type = each.value["type"]
+  zone = local.instance_zone
+  labels = {
+    device_name = each.value["device"]
   }
 }

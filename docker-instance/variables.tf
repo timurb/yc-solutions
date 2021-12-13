@@ -28,6 +28,15 @@ variable "root_disk_size" {
   default = 30
 }
 
+variable "additional_disks" {
+  type = map(object({
+    device = string,
+    size = number,
+    type = string
+  }))
+  default = {}
+}
+
 variable "zone" {
   type = number
   default = 1
